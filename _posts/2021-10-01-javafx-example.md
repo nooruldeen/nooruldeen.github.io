@@ -1,6 +1,11 @@
 ---
-title: "Welcome to My Blog"
 layout: post
+title: Simple JavaFX App
+date: 2021-10-01 23:00
+category: java
+author: Nooruldeen Alsaif
+tags: [java, javafx]
+summary: Create a simple client interface using SceneBuilder and JavaFX
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.

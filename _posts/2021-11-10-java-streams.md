@@ -1,8 +1,11 @@
 ---
-title:  "Advanced examples"
-mathjax: true
 layout: post
-categories: media
+title: Java Streams
+date: 2021-11-10 23:00
+category: java
+author: Nooruldeen Alsaif
+tags: [java, java-11, java-streams]
+summary: An advanced Java Streams example
 ---
 
 ![Swiss Alps](https://user-images.githubusercontent.com/4943215/55412536-edbba180-5567-11e9-9c70-6d33bca3f8ed.jpg)

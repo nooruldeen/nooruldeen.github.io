@@ -1,6 +1,11 @@
 ---
-title:  "Markdown examples"
 layout: post
+title: Spring Boot REST API
+date: 2021-11-01 23:00
+category: spring-boot
+author: Nooruldeen Alsaif
+tags: [spring-boot, REST API, java]
+summary: How to create a REST API using Spring Boot
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
