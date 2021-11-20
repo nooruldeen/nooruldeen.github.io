@@ -8,59 +8,56 @@ tags: [java, java-11, java-streams]
 summary: An advanced Java Streams example
 ---
 
-![Swiss Alps](https://user-images.githubusercontent.com/4943215/55412536-edbba180-5567-11e9-9c70-6d33bca3f8ed.jpg)
+Java Streams was introduced in Java 8. In this article we will see how we can use Java Streams to write a function in a more elegant and fancy way. 
+
+If you like to learn how to write few lines that can solve complex problems then you should give Java Streams a try.
+
+## The Problem
+
+Let's start with a problem statement, think about how we can solve it using loops and if-else statements, then we will see how to solve it using Java Streams.
+
+You have been asked to write a function to return a list of the top `N`  products from a list of `products` that appear in customer comments or `reviews`.
 
 
-## MathJax
+## Solving Problems The Old Way
 
-You can enable MathJax by setting `mathjax: true` on a page or globally in the `_config.yml`. Some examples:
+Before Java Streams, this problem can solved as follows:
 
-[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula) relates the  complex exponential function to the trigonometric functions.
+- Create a hash map to count the number of possible `products`
+- Loop through the list of `reviews`
+- Split the comment by non-word characters
+- Increment the count in the products map every time we see a word that matches a product in `products`
+- Sort the `products` by count in decending order
+- Return the top `N` products
 
-$$ e^{i\theta}=\cos(\theta)+i\sin(\theta) $$
 
-The [Euler-Lagrange](https://en.wikipedia.org/wiki/Lagrangian_mechanics) differential equation is the fundamental equation of calculus of variations.
+## Java Streams
 
-$$ \frac{\mathrm{d}}{\mathrm{d}t} \left ( \frac{\partial L}{\partial \dot{q}} \right ) = \frac{\partial L}{\partial q} $$
+Now let's solve the same problem using Java Streams.
 
-The [Schrödinger equation](https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation) describes how the quantum state of a quantum system changes with time.
 
-$$ i\hbar\frac{\partial}{\partial t} \Psi(\mathbf{r},t) = \left [ \frac{-\hbar^2}{2\mu}\nabla^2 + V(\mathbf{r},t)\right ] \Psi(\mathbf{r},t) $$
-
-## Code
-
-Embed code by putting `{{ "{% highlight language " }}%}` `{{ "{% endhighlight " }}%}` blocks around it. Adding the parameter `linenos` will show source lines besides the code.
-
-{% highlight c %}
-
-static void asyncEnabled(Dict* args, void* vAdmin, String* txid, struct Allocator* requestAlloc)
+``` java
+List<String> topProducts(int N,
+                        List<String> products,
+                        List<String> reviews)
 {
-    struct Admin* admin = Identity_check((struct Admin*) vAdmin);
-    int64_t enabled = admin->asyncEnabled;
-    Dict d = Dict_CONST(String_CONST("asyncEnabled"), Int_OBJ(enabled), NULL);
-    Admin_sendMessage(&d, txid, admin);
+    Set<String> productsIgnoreCase = products.stream()
+        .map(String::toLowerCase)
+        .collect(toSet());
+
+    return reviews.parallelStream()
+        .flatMap(request -> Arrays.stream(request.trim().split("\\s+")))
+        .map(String::toLowerCase)
+        .filter(productsIgnoreCase::contains)
+        .collect(Collectors.groupingByConcurrent(Function.identity(), Collectors.counting()))
+        .entrySet()
+        .stream()
+        .sorted(((o1, o2) -> o2.getValue().compareTo(o1.getValue())))
+        .map(Map.Entry::getKey)
+        .limit(N)
+        .collect(Collectors.toCollection(ArrayList::new));
 }
 
-{% endhighlight %}
+```
 
-## Gists
 
-With the `jekyll-gist` plugin, which is preinstalled on Github Pages, you can embed gists simply by using the `gist` command:
-
-<script src="https://gist.github.com/5555251.js?file=gist.md"></script>
-
-## Images
-
-Upload an image to the *assets* folder and embed it with `![title](/assets/name.jpg))`. Keep in mind that the path needs to be adjusted if Jekyll is run inside a subfolder.
-
-A wrapper `div` with the class `large` can be used to increase the width of an image or iframe.
-
-![Flower](https://user-images.githubusercontent.com/4943215/55412447-bcdb6c80-5567-11e9-8d12-b1e35fd5e50c.jpg)
-
-[Flower](https://unsplash.com/photos/iGrsa9rL11o) by Tj Holowaychuk
-
-## Embedded content
-
-You can also embed a lot of stuff, for example from YouTube, using the `embed.html` include.
-
-{% include embed.html url="https://www.youtube.com/embed/_C0A5zX-iqM" %}
