@@ -4,14 +4,15 @@ permalink: "/about/"
 layout: page
 ---
 
-## Who am I?
+## Welcome to my blog!
 
-A Software Engineer with a decade of firsthand experience in Data Analytics, BI, developing and testing Messaging Systems and REST APIs for Banking, and Risk Management systems for Telecom. Interdependent collaborator worked with agile, cross-functional, and offshore teams throughout the SDLC including integration, testing, and deployment.
+Hi, my name is Nooruldeen Alsaif, a Software Engineer with a decade of firsthand experience in Data Analytics, BI, developing and testing Messaging Systems and REST APIs for Banking, and Risk Management systems for Telecom. 
+I use this blog to share some of my work and interests. The opinions in this blog are mine and only mine.
 
 
 ## What I like to write about
 
- - REST API's using Spring Boots
+ - REST API's using Java Spring Boots
  - JavaFX Apps
  - Dynamic Programming problems
  - Java Streams
@@ -34,7 +35,7 @@ A Software Engineer with a decade of firsthand experience in Data Analytics, BI,
 
 ## License
 
-All the code in my post is unlicensed, so feel free to use it.
+All the code in my posts is unlicensed, so feel free to use it.
 
 [public domain](http://unlicense.org/)
 
