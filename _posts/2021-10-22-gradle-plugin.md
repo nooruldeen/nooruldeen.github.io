@@ -7,3 +7,4 @@ author: Nooruldeen Alsaif
 tags: [gradle, plugin]
 summary: How to create a Gradle plugin and use it in another Gradle project
 ---
+
